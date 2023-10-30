@@ -1,0 +1,16 @@
+<div class="flex h-full flex-col">
+  <!-- 2 column wrapper -->
+  <div class="w-full grow lg:flex">
+    <!-- Left sidebar & main wrapper -->
+    <div class="flex-1 lg:flex">
+      <div class="hidden lg:block border-b border-gray-300 dark:border-gray-700 py-6 xl:w-64 xl:shrink-0 xl:border-b-0 lg:border-r xl:border-r">
+        <%= yield :left_content %>
+      </div>
+
+      <div class="px-4 py-6 sm:px-6 xl:flex-1 xl:pl-6">
+        <!-- Main area -->
+        <%= yield :main_content %>
+      </div>
+    </div>
+  </div>
+</div>

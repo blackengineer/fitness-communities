@@ -1,0 +1,22 @@
+<div id="<%= dom_id program %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= program.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= program.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Avatar:</strong>
+    <%= link_to program.avatar.filename, program.avatar if program.avatar.attached? %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this program", program, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this program", edit_program_path(program), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -18,6 +18,7 @@ module.exports = {
     './app/views/**/*.erb',
     './app/views/**/*.haml',
     './app/views/**/*.slim',
+    './vendor/javascript/tailwindcss-stimulus-components.js'
   ],
 
   // All the default values will be compiled unless they are overridden below

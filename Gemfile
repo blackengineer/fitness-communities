@@ -73,3 +73,4 @@ end
 gem "devise", "~> 4.9"
 gem 'inline_svg'
 gem 'faker'
+gem 'friendly_id', '~> 5.4.0'

@@ -5,6 +5,5 @@ class Program < ApplicationRecord
   
   # associations
   has_one_attached :avatar
-  has_rich_text :description
   belongs_to :user
 end

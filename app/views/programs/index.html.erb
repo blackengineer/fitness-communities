@@ -6,15 +6,39 @@
 <% end %>
 
 <% content_for :main_content do %>
-  <div class="container px-4 mx-auto my-8">
-    <div class="flex items-center justify-between mb-4">
-      <div>
-        <h1 class="text-base">Programs</h1>
-      </div>
-      <%= link_to "New Program", new_program_path, class: "rounded-full py-2 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="w-full">
+    <div class="mb-10 flex justify-between items-center">
+      <h1 class="font-bold text-base">Programs</h1>
+      <!-- if current_user && current_user.has_role?(:admin) -->
+        <div class="mt-4 sm:ml-16 sm:mt-0 flex justify-between items-center">
+          <%= link_to "Create a program", new_program_path, class: "rounded-full py-2 px-5 bg-blue-500 text-white block font-medium" %>
+        </div>
+      <!-- end -->
     </div>
-    <ul role="list" class="grid gap-x-6 gap-y-8 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xl:gap-x-8 list-none">
-      <%= render @programs %>
+  
+    <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
+      <% @programs.each do |program| %>
+        <li class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center gap-x-4 bg-gray-200 dark:bg-gray-900 px-4 py-6">
+            <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+            <div class="text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= program.title %></div>
+          </div>
+          <dl class="-my-3 divide-y divide-gray-100 dark:divide-gray-700 py-4 text-sm leading-6 bg-white dark:bg-gray-900">
+            <div class="flex justify-between gap-x-4 px-4 py-3">
+              <dt class="text-gray-500 dark:text-white line-clamp-3"><%= program.description %></dt>
+            </div>
+            <div class="flex justify-between gap-x-4 px-4 py-3 link-clamp-3">
+              <dt class="mt-2 inline-flex items-center rounded-full bg-blue-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"><%= link_to "View program", program_path(program) %></dt>
+            </div>
+            <!-- if current_user && current_user.has_role?(:admin) -->
+              <div class="flex justify-between gap-x-4 px-4 py-3 link-clamp-3">
+                <dt class="mt-2 inline-flex items-center rounded-full bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs text-gray-500 ring-1 ring-inset ring-gray-600/20"><%= link_to "Edit program", edit_program_path(program) %></dt>
+                <dt class="mt-2 inline-flex items-center rounded-full bg-red-50 dark:bg-gray-800 px-2 py-1 text-xs text-red-700 ring-1 ring-inset ring-red-600/20"><%= button_to "Destroy program", program_path(program), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></dt>
+              </div>
+            <!-- end -->
+          </dl>
+        </li>
+      <% end %>
     </ul>
   </div>
 <% end %>

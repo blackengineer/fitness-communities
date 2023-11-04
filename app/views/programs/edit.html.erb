@@ -1,8 +1,23 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing program</h1>
+<%= content_for :title, "Programs" %>
+<%= turbo_stream_from :programs %>
 
-  <%= render "form", program: @program %>
+<% content_for :left_content do %>
+  <%= render "shared/sidebar_menu" %>
+<% end %>
 
-  <%= link_to "Show this program", @program, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to programs", programs_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+<% content_for :main_content do %>
+  <div class="container px-4 mx-auto my-8">
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-base mb-3">Edit program</h1>
+    </div>
+
+    <div class="p-8 bg-white border border-gray-300 dark:bg-gray-900 dark:border-gray-700 rounded">
+      <%= render "form", program: @program %>
+      <%= link_to "Show this program", @program, class: "rounded-full py-2 px-5 border border-gray-300 bg-white inline-block text-gray-500 text-xs" %>
+      <%= link_to "Back to programs", programs_path, class: "ml-2 rounded-full py-2 px-5 border border-gray-200 bg-white inline-block text-gray-500 text-xs" %>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/three_column_layout" %>
+

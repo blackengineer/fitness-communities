@@ -1,11 +1,22 @@
-<div class="w-full">
-  
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Programs</h1>
-    <%= link_to "New program", new_program_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
+<%= content_for :title, "Programs" %>
+<%= turbo_stream_from :programs %>
 
-  <div id="programs" class="min-w-full">
-    <%= render @programs %>
+<% content_for :left_content do %>
+  <%= render "shared/sidebar_menu" %>
+<% end %>
+
+<% content_for :main_content do %>
+  <div class="container px-4 mx-auto my-8">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h1 class="text-base">Programs</h1>
+      </div>
+      <%= link_to "New Program", new_program_path, class: "rounded-full py-2 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+    <ul role="list" class="grid gap-x-6 gap-y-8 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xl:gap-x-8 list-none">
+      <%= render @programs %>
+    </ul>
   </div>
-</div>
+<% end %>
+
+<%= render "shared/three_column_layout" %>

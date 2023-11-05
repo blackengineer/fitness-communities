@@ -10,7 +10,6 @@ module ApplicationHelper
   end
   
   def avatar_url_for(user, opts = {})
-
     if user.avatar.attached?
       user.avatar
     else

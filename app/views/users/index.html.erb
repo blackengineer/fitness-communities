@@ -1,0 +1,91 @@
+<% content_for :left_content do %>
+  <%= render "shared/sidebar_menu" %>
+<% end %>
+
+<% content_for :main_content do %>
+  <div>
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Athletes</h1>
+      </div>
+    </div>
+    <div class="mt-8 flow-root">
+      <div class="-my-2 overflow-x-auto border border-gray-300 rounded-lg bg-white dark:bg-gray-900 dark:border-gray-700">
+        <div class="inline-block min-w-full py-2 align-middle">
+          <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+            <thead>
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-0"></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Created date</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Sign in count</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Current sign in at</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Last sign in at</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Current sign in IP</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Last sign in IP</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Confirmed email?</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900 dark:text-white">Athlete roles</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <% @user.each do |user| %>
+              <tbody class="divide-y divide-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 dark:divide-gray-700 dark:text-white">
+                <tr>
+                  <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                    <div class="flex items-center">
+                      <div class="h-11 w-11 flex-shrink-0 ml-4">
+                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                      </div>
+                      <div class="mx-8">
+                        <div class="font-semibold text-gray-900 dark:text-white"><!-- user.name --></div>
+                        <div class="text-gray-900 dark:text-white"><%= user.email %></div>
+                        <div class="text-gray-900 dark:text-white">@<%= user.username %></div>
+                        <div class="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 dark:bg-gray-900 dark:ring-gray-70"><%= link_to "View user", user_path(user) %></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%= time_ago_in_words(user.created_at) %> ago</div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%= user.sign_in_count %></div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%= user.current_sign_in_at %></div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%= user.last_sign_in_at %></div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%= user.current_sign_in_ip %></div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <div class="text-gray-900 dark:text-white"><%=user.last_sign_in_ip %></div>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <!-- if user.confirmed_at.present? -->
+                      <div class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Yes</div>
+                    <!-- else -->
+                      <div class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No</div>
+                    <!-- end -->
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
+                    <!-- athlete roles -->
+                      <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"><!-- role.name --></span>
+                    <!-- end -->
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-5 text-sm font-medium text-blue-500 hover:text-blue-500">
+                    <!-- edit athlete roles -->
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/two_column_layout" %>

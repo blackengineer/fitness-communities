@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :programs
   devise_for :users
+  resources :users, only: [:index, :show]
   scope controller: :static_pages do
     get :about
     get :home

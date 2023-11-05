@@ -64,11 +64,11 @@
                     <div class="text-gray-900 dark:text-white"><%=user.last_sign_in_ip %></div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
-                    <!-- if user.confirmed_at.present? -->
+                    <% if user.confirmed_at.present? %>
                       <div class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Yes</div>
-                    <!-- else -->
+                    <% else %>
                       <div class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No</div>
-                    <!-- end -->
+                    <% end %>
                   </td>
                   <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 dark:text-white">
                     <!-- athlete roles -->

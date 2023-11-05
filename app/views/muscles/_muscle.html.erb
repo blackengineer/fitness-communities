@@ -1,47 +1,18 @@
 <div id="<%= dom_id muscle %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Origin:</strong>
-    <%= muscle.origin %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Insertion:</strong>
-    <%= muscle.insertion %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Concentric:</strong>
-    <%= muscle.concentric %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Eccentric:</strong>
-    <%= muscle.eccentric %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Isometric:</strong>
-    <%= muscle.isometric %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Innervation:</strong>
-    <%= muscle.innervation %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Blood supply:</strong>
-    <%= muscle.blood_supply %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Avatar:</strong>
-    <%= link_to muscle.avatar.filename, muscle.avatar if muscle.avatar.attached? %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this muscle", muscle, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this muscle", edit_muscle_path(muscle), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <tbody class="divide-y divide-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700">
+    <tr>
+      <td class="whitespace-normal py-5 pr-3 text-sm sm:pl-0">
+        <div class="flex items-center">
+          <div class="h-11 w-11 flex-shrink-0">
+            <!-- image_tag muscle.avatar, alt: muscle.name, class: "h-11 w-11 rounded-full ml-4" -->
+          </div>
+          <div class="ml-6">
+            <div class="font-medium text-gray-900 dark:text-white mb-2"><%= link_to muscle.name, muscle %></div>
+            <div class="text-gray-500 line-clamp-3 mb-2 dark:text-white"><%= muscle.origin %></div>
+            <div class="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 dark:bg-gray-900 dark:border dark:border-gray-700"><%= link_to "Learn more", muscle_path(muscle) %></div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
 </div>

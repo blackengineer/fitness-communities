@@ -65,6 +65,6 @@ class MusclesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def muscle_params
-      params.require(:muscle).permit(:origin, :insertion, :concentric, :eccentric, :isometric, :innervation, :blood_supply, :avatar)
+      params.require(:muscle).permit(:name, :origin, :insertion, :concentric, :eccentric, :isometric, :innervation, :blood_supply, :avatar)
     end
 end

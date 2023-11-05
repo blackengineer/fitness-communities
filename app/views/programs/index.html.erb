@@ -39,12 +39,12 @@
               <dt class="text-gray-500 dark:text-white line-clamp-3"><%= number_to_currency(program.price) %></dt>
             </div>
             <div class="flex justify-between gap-x-4 px-4 py-3 link-clamp-3">
-              <dt class="mt-2 inline-flex items-center rounded-full bg-blue-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"><%= link_to "View program", program_path(program) %></dt>
+              <dt class="mt-2 inline-flex items-center rounded-full bg-blue-50 dark:bg-gray-900 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"><%= link_to "View program", program_path(program) %></dt>
             </div>
             <!-- if current_user && current_user.has_role?(:admin) -->
               <div class="flex justify-between gap-x-4 px-4 py-3 link-clamp-3">
-                <dt class="mt-2 inline-flex items-center rounded-full bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs text-gray-500 ring-1 ring-inset ring-gray-600/20"><%= link_to "Edit program", edit_program_path(program) %></dt>
-                <dt class="mt-2 inline-flex items-center rounded-full bg-red-50 dark:bg-gray-800 px-2 py-1 text-xs text-red-700 ring-1 ring-inset ring-red-600/20"><%= button_to "Destroy program", program_path(program), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></dt>
+                <dt class="mt-2 inline-flex items-center rounded-full bg-gray-50 dark:bg-gray-900 px-2 py-1 text-xs text-gray-500 ring-1 ring-inset ring-gray-600/20"><%= link_to "Edit program", edit_program_path(program) %></dt>
+                <dt class="mt-2 inline-flex items-center rounded-full bg-red-50 dark:bg-gray-900 px-2 py-1 text-xs text-red-700 ring-1 ring-inset ring-red-600/20"><%= button_to "Destroy program", program_path(program), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></dt>
               </div>
             <!-- end -->
           </dl>

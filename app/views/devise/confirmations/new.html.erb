@@ -1,16 +1,29 @@
-<h2>Resend confirmation instructions</h2>
-
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div class="w-full bg-white rounded-lg border border-gray-200 dark:border-gray-700 md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 class="text-xl font-semibold leading-tight tracking-tight text-gray-900 dark:text-white">
+              Resend confirmation instructions
+          </h1>
+          <form class="space-y-4 md:space-y-6" action="#">
+            <div>
+              <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Email" %>
+            </div>
+            <%= f.submit "Resend confirmation instructions", class: "w-full text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800" %>
+          </form>
+          <div class="-mb-2 text-sm font-light text-gray-500 dark:text-gray-400">
+            Already a member? <%= link_to "Log in", new_user_session_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
+          </div>
+          <div class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Don't have an account? <%= link_to "Sign up", new_user_registration_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
+          </div>
+          <div class="text-sm font-light text-gray-500 dark:text-gray-400">
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-sm font-medium text-blue-500 hover:underline dark:text-blue-500" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
-
-<%= render "devise/shared/links" %>

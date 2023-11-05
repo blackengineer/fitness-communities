@@ -25,13 +25,13 @@
               <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-sm font-medium text-blue-500 hover:underline dark:text-blue-500" %>
             </div>
             <%= f.submit "Log in", class: "w-full text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800" %>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-              Don’t have an account yet? <%= link_to "Sign up", new_user_registration_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
-            </p>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-              <%= link_to "Resend confirmation", new_user_confirmation_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
-            </p>
           </form>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Don’t have an account yet? <%= link_to "Sign up", new_user_registration_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
+          </p>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            <%= link_to "Resend confirmation", new_user_confirmation_path, class: "font-medium text-blue-500 hover:underline dark:text-blue-500" %>
+          </p>
         </div>
       </div>
     </div>

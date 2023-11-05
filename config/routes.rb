@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movements
   resources :programs
   devise_for :users
   resources :users, only: [:index, :show]

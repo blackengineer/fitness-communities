@@ -11,7 +11,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Avatar:</strong>
-    <%= link_to program.avatar.filename, program.avatar if program.avatar.attached? %>
+    <%= image_tag program.avatar if program.avatar.attached? %>
   </p>
 
   <% if action_name != "show" %>

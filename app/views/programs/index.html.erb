@@ -20,7 +20,7 @@
       <% @programs.each do |program| %>
         <li class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
           <div class="flex items-center gap-x-4 bg-gray-200 dark:bg-gray-900 px-4 py-6">
-            <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+            <%= image_tag program.avatar, class: "h-12 w-12 rounded-md" %>
             <div class="text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= program.title %></div>
           </div>
           <dl class="-my-3 divide-y divide-gray-100 dark:divide-gray-700 py-4 text-sm leading-6 bg-white dark:bg-gray-900">

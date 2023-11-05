@@ -9,6 +9,8 @@ class User < ApplicationRecord
          
   # Associations
   has_many :programs
+  has_one_attached :avatar
+  
   validates :username, presence: true
   
   def to_s

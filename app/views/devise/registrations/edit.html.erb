@@ -7,6 +7,11 @@
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
   </div>
+  
+  <div class="field">
+    <%= image_tag avatar_url_for(resource), class: "h-10 w-10 rounded-full" %>
+    <%= f.file_field :avatar, class: "file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />

@@ -8,4 +8,14 @@ module ApplicationHelper
     filename = "#{name}.svg"
     inline_svg_tag(filename, options)
   end
+  
+  def avatar_url_for(user, opts = {})
+
+    if user.avatar.attached?
+      user.avatar
+    else
+      hash = Digest::MD5.hexdigest(user.email.downcase)
+      "https://secure.gravatar.com/avatar/#{hash}.png"
+    end
+  end
 end

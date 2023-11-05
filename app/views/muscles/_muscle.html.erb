@@ -1,0 +1,47 @@
+<div id="<%= dom_id muscle %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Origin:</strong>
+    <%= muscle.origin %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Insertion:</strong>
+    <%= muscle.insertion %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Concentric:</strong>
+    <%= muscle.concentric %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Eccentric:</strong>
+    <%= muscle.eccentric %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Isometric:</strong>
+    <%= muscle.isometric %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Innervation:</strong>
+    <%= muscle.innervation %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Blood supply:</strong>
+    <%= muscle.blood_supply %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Avatar:</strong>
+    <%= link_to muscle.avatar.filename, muscle.avatar if muscle.avatar.attached? %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this muscle", muscle, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this muscle", edit_muscle_path(muscle), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

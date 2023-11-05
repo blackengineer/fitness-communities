@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :muscles
   resources :movements
   resources :programs
   devise_for :users

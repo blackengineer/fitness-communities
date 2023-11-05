@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyText
+  insertion: MyText
+  concentric: MyText
+  eccentric: MyText
+  isometric: MyText
+  innervation: MyText
+  blood_supply: MyText
+
+two:
+  origin: MyText
+  insertion: MyText
+  concentric: MyText
+  eccentric: MyText
+  isometric: MyText
+  innervation: MyText
+  blood_supply: MyText

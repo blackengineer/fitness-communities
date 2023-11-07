@@ -1,0 +1,45 @@
+<% content_for :left_content do %>
+  <%= render "shared/sidebar_menu" %>
+<% end %>
+
+<% content_for :main_content do %>
+  <div class="sm:flex sm:items-center mb-5">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Edit Athlete Roles</h1>
+    </div>
+  </div>
+  <ul role="list" class="xl:gap-x-8">
+    <li class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+      <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-200 dark:bg-gray-900 p-6">
+        <tr>
+          <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+            <div class="flex items-center">
+              <%= image_tag avatar_url_for(@user), class: "h-16 w-16 flex-none rounded-full object-cover ring-1 ring-gray-900/10" %>
+              <div class="mx-8">
+                <div class="font-semibold text-gray-900 dark:text-white"><!-- user.name --></div>
+                <div class="text-gray-900 dark:text-white"><%= @user.email %></div>
+                <div class="text-gray-900 dark:text-white">@<%= @user.username %></div>
+                <div class="mt-2 inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 dark:bg-gray-900 dark:ring-gray-70"><%= link_to "View athlete", user_path(@user) %></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </div>
+      <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-white dark:bg-gray-900">
+        <div class="m-5 bg">
+          <%= form_with(model: @user, class: "contents") do |form| %>
+            <div class="mb-5">
+              <%= form.collection_check_boxes :role_ids, Role.all, :id, :name, {}, { class: "mx-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" } %>
+            </div>
+            <div>
+              <%= form.submit class: "mb-5 rounded-full py-2 px-5 bg-blue-500 text-white block font-medium cursor-pointer" %>
+            </div>
+          <% end %>
+          <%= link_to 'Cancel', users_path, class: "rounded-full py-2 px-5 border border-gray-300 bg-gray-100 inline-block text-gray-500" %>
+        </div>
+      </dl>
+    </li>
+  </ul>
+<% end %>
+
+<%= render "shared/two_column_layout" %>

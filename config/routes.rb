@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :movements
   resources :programs
   devise_for :users
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :edit, :show, :update]
   scope controller: :static_pages do
     get :about
     get :home

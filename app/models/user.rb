@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   extend FriendlyId
   friendly_id :username, use: :slugged
   # Include default devise modules. Others available are:
@@ -15,5 +16,19 @@ class User < ApplicationRecord
   
   def to_s
     email
+  end
+  
+  after_create :assign_default_role
+  
+  def assign_default_role
+    if User.count == 1
+      self.add_role(:admin) if self.roles.blank?
+      self.add_role(:coach)
+      self.add_role(:student)
+      self.add_role(:employer)
+      self.add_role(:moderator)
+    else
+      self.add_role(:student) if self.roles.blank?
+    end
   end
 end

@@ -3,13 +3,19 @@
 <% end %>
 
 <% content_for :main_content do %>
-  <div class="mx-auto md:w-2/3 w-full">
-    <h1 class="font-bold text-4xl">New blog</h1>
-  
-    <%= render "form", blog: @blog %>
-  
-    <%= link_to "Back to blogs", blogs_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="container px-4 mx-auto my-8">
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-base mb-3">Create a Blog</h1>
+    </div>
+
+    <div class="p-8 bg-white border border-gray-300 dark:bg-gray-900 dark:border-gray-700 rounded-lg">
+      <%= render "form", blog: @blog %>
+      <%= link_to "Back to blogs", blogs_path, class: "ml-2 rounded-full py-2 px-5 bg-gray-100 inline-block font-medium dark:text-gray-700" %>
+    </div>
   </div>
+<% end %>
+
+<% content_for :right_content do %>
 <% end %>
 
 <%= render "shared/three_column_layout" %>

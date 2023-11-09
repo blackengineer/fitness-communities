@@ -5,4 +5,6 @@ class Blog < ApplicationRecord
   validates :title, presence: true
   
   has_one_attached :avatar
+  
+  belongs_to :user
 end

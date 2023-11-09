@@ -10,6 +10,7 @@ class User < ApplicationRecord
          
   # Associations
   has_many :programs
+  has_many :blogs
   has_one_attached :avatar
   
   validates :username, presence: true

@@ -3,14 +3,54 @@
 <% end %>
 
 <% content_for :main_content do %>
-  <div class="w-full">
+  <div>
+    <div class="w-full">
     <div class="flex justify-between items-center">
-      <h1 class="font-bold text-4xl">Blogs</h1>
-      <%= link_to "New blog", new_blog_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <h1 class="font-bold text-base">Blog</h1>
+      <% if user_signed_in? && current_user.has_role?(:admin) %>
+        <div class="mt-4 sm:ml-16 sm:mt-0 flex justify-between items-center">
+          <%= link_to "Create a blog post", new_blog_path, class: "rounded-full py-2 px-5 bg-blue-500 text-white block font-medium" %>
+        </div>
+      <% end %>
     </div>
-  
-    <div id="blogs" class="min-w-full">
-      <%= render @blogs %>
+      <p class="mt-2 text-sm leading-8 text-gray-600 dark:text-gray-500">Learn about the latest trends and research in fitness.</p>
+      <div class="mt-10 grid grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <% @blogs.each do |blog| %>
+          <article class="flex max-w-xl flex-col items-start justify-between border border-gray-300 dark:border-gray-700 rounded-lg p-4">
+            <!-- if blog.avatar.attached?
+              <div>
+                < image_tag blog.avatar >
+              </div>
+            < end % -->
+            <div class="flex items-center gap-x-4 text-xs">
+              <time datetime="2020-03-16" class="text-gray-500 dark:text-white"><%= blog.created_at.strftime("%m-%d-%Y") %></time>
+              <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-md font-semibold leading-6 text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-white">
+                <a href="<%= blog_path(blog) %>">
+                  <span class="absolute inset-0"></span>
+                  <%= blog.title %>
+                </a>
+              </h3>
+              <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-500"><%= blog.content %></p>
+            </div>
+            <div class="relative mt-8 flex items-center gap-x-4">
+              <%= image_tag avatar_url_for(blog.user), class: "h-10 w-10 rounded-full bg-gray-50" %>
+              <div class="text-sm leading-6">
+                <p class="font-semibold text-gray-900 dark:text-white">
+                  <span class="absolute inset-0"></span>
+                 <%= blog.user.email %>
+                </p>
+                <a href="<%= user_path(blog.user) %>">
+                  <span class="absolute inset-0"></span>
+                  @<%= blog.user.username %>
+                </a>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

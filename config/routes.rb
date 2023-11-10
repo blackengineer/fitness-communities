@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :communities
   resources :blogs
   resources :muscles
   resources :movements

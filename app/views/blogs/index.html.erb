@@ -17,11 +17,11 @@
       <div class="mt-10 grid grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none md:grid-cols-2 lg:grid-cols-2">
         <% @blogs.each do |blog| %>
           <article class="flex max-w-xl flex-col items-start justify-between border border-gray-300 dark:border-gray-700 rounded-lg p-4">
-            <!-- if blog.avatar.attached?
+            <% if blog.avatar.attached? %>
               <div>
-                < image_tag blog.avatar >
+                <%= image_tag blog.avatar %>
               </div>
-            < end % -->
+            <% end %>
             <div class="flex items-center gap-x-4 text-xs">
               <time datetime="2020-03-16" class="text-gray-500 dark:text-white"><%= blog.created_at.strftime("%m-%d-%Y") %></time>
               <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
@@ -36,7 +36,7 @@
               <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-500"><%= blog.content %></p>
             </div>
             <div class="relative mt-8 flex items-center gap-x-4">
-              <%= image_tag avatar_url_for(blog.user), class: "h-10 w-10 rounded-full bg-gray-50" %>
+              <%= image_tag avatar_url_for(blog.user), class: "h-10 w-10 rounded-full ring-1 ring-gray-900/10" %>
               <div class="text-sm leading-6">
                 <p class="font-semibold text-gray-900 dark:text-white">
                   <span class="absolute inset-0"></span>

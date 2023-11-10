@@ -19,7 +19,7 @@
     <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
       <% @programs.each do |program| %>
         <li class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-          <div class="flex items-center gap-x-4 bg-gray-200 dark:bg-gray-900 px-4 py-6">
+          <div class="flex items-center gap-x-4 dark:bg-gray-900 px-4 py-6">
             <%= image_tag program.avatar, class: "h-12 w-12 rounded-md" %>
             <div class="text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= program.title %></div>
           </div>

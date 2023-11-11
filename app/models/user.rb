@@ -10,9 +10,9 @@ class User < ApplicationRecord
          
   # Associations
   has_many :programs
-  has_many :blogs
+  has_many :blogs, dependent: :destroy
   has_many :communities
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_one_attached :avatar
   
   validates :username, presence: true

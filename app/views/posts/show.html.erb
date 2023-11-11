@@ -1,15 +1,103 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<%= content_for :title, "Posts ##{@post.id}" %>
+<%= turbo_stream_from @post %>
 
-    <%= render @post %>
+<% content_for :left_content do %>
+  <%= render "sidebar_menu" %>
+<% end %>
 
-    <%= link_to "Edit this post", edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<% content_for :main_content do %>
+  
+  <div class="col-span-1 divide-gray-200 rounded-lg border border-gray-300 bg-white dark:bg-gray-900 dark:border-gray-700">
+    <div class="flex w-full items-center justify-between space-x-6 p-6">
+      <!-- post avatar, class: "rounded-full h-10 w-10" -->
+      <div class="flex-1 truncate">
+        <div class="flex items-center space-x-3">
+          <h3 class="truncate text-xs font-medium text-gray-900 dark:text-white">Posted in <%= link_to @post.community.name %> • <span class="text-gray-500 font-normal text-xs dark:text-white"><%= time_ago_in_words(@post.created_at) %> ago</span></br>
+          by <span><%= link_to @post.user.username, user_path(@post.user), class: "text-gray-900 dark:text-white font-medium hover:underline cursor-pointer" %></span></h3>
+        </div>
+      </div>
     </div>
-    <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="text-sm mx-6 my-4">
+      <div class="mb-3">
+        <p class="text-base mb-3">
+          <%= @post.title %>
+        </p>
+  
+        <% if @post.url? %>
+          <p class="mb-5 text-gray-600 dark:text-white">
+            <%= @post.url %>
+          </p>
+        <% end %>
+        
+        <% if @post.media.attached? %>
+          <div class="mb-5">
+            <% if @post.media.video? %>
+              <%= video_tag @post.media %>
+            <% else %>
+              <%= image_tag @post.media, alt: @post.title %>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <% if @post.content %>
+          <p class="mb-5 text-gray-600 dark:text-white">
+            <%= @post.content %>
+          </p>
+        <% end %>
+      </div>
+      <!-- Post data -->
+      <div class="mb-5 flex items-center gap-x-2 text-xs">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+        </svg>
+      </div>
+  
+      <% if user_signed_in? %>
+        <div class="mb-8">
+          
+        </div>
+      <% else %>
+        <div class="mb-5 underline text-blue-500 font-medium">
+          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Log in", new_user_session_path %> to comment
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %> 
+  
+<% content_for :right_content do %>
+  <div class="overflow-hidden rounded-lg border border-gray-300 dark:bg-gray-900 dark:border dark:border-gray-700">
+    <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-100 p-6 dark:bg-gray-900 dark:border-gray-700">
+      <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+      <div class="text-sm font-medium leading-6 text-gray-900">Tuple</div>
+      <div class="relative ml-auto">
+        <button type="button" class="-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500" id="options-menu-0-button" aria-expanded="false" aria-haspopup="true">
+          <span class="sr-only">Open options</span>
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+          </svg>
+        </button>
+        <div class="absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none dark:border dark:border-gray-700 dark:bg-gray-900" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
+          <!-- Active: "bg-gray-50", Not Active: "" -->
+          <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-0">View<span class="sr-only">, Tuple</span></a>
+          <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-1">Edit<span class="sr-only">, Tuple</span></a>
+        </div>
+      </div>
+    </div>
+    <dl class="-my-3 divide-y divid-gray-300 dark:divide-gray-700 py-4 text-sm leading-6 bg-white dark:bg-gray-900">
+      <div class="flex justify-between gap-x-4 px-4 py-3">
+        <dt class="text-gray-500 dark:text-white">Last invoice</dt>
+        <dd class="text-gray-700 dark:text-white"><time datetime="2022-12-13">December 13, 2022</time></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 px-4 py-3">
+        <dt class="text-gray-500 dark:text-white">Amount</dt>
+        <dd class="flex items-start gap-x-2">
+          <div class="font-medium text-gray-900 dark:text-white">$2,000.00</div>
+          <div class="rounded-md py-1 px-2 text-xs font-medium text-red-700 bg-red-50 dark:border dark:border-gray-700 dark:bg-gray-900">Overdue</div>
+        </dd>
+      </div>
+    </dl>
+  </div>
+<% end %>
+
+<%= render "three_column_layout" %>

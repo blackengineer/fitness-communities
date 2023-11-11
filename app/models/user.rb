@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # Associations
   has_many :programs
   has_many :movements
+  has_many :muscles
   has_many :blogs, dependent: :destroy
   has_many :communities
   has_many :posts, dependent: :destroy

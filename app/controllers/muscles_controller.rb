@@ -22,6 +22,7 @@ class MusclesController < ApplicationController
   # POST /muscles or /muscles.json
   def create
     @muscle = Muscle.new(muscle_params)
+    @muscle.user = current_user
 
     respond_to do |format|
       if @muscle.save

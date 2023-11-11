@@ -22,6 +22,7 @@ class MovementsController < ApplicationController
   # POST /movements or /movements.json
   def create
     @movement = Movement.new(movement_params)
+    @movement.user = current_user
 
     respond_to do |format|
       if @movement.save

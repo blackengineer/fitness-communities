@@ -71,9 +71,9 @@
                   class="hidden absolute top-4 right-0 z-10 mt-5 flex w-screen max-w-max">
               <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-900 dark:border dark:border-gray-700 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none " role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-0">Join<span class="sr-only">Join <%= @movement.name %></span></a>
-                <!-- if current_user && current_user == @movement.user -->
-                  <!-- link_to "Edit", edit_program_path, class: "block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" %><span class="sr-only">Edit <%= @movement.name %></span>
-                <!-- end -->
+                <% if current_user && current_user == @movement.user %>
+                  <%= link_to "Edit", edit_movement_path, class: "block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" %><span class="sr-only">Edit <%= @movement.name %></span>
+                <% end %>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_10_032627) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_11_151356) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,7 +92,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_10_032627) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "user_id", null: false
     t.index ["slug"], name: "index_movements_on_slug", unique: true
+    t.index ["user_id"], name: "index_movements_on_user_id"
   end
 
   create_table "muscles", force: :cascade do |t|
@@ -184,6 +186,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_10_032627) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "users"
   add_foreign_key "communities", "users"
+  add_foreign_key "movements", "users"
   add_foreign_key "posts", "communities"
   add_foreign_key "posts", "users"
   add_foreign_key "programs", "users"

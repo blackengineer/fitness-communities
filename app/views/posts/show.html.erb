@@ -68,19 +68,34 @@
 <% content_for :right_content do %>
   <div class="overflow-hidden rounded-lg border border-gray-300 dark:bg-gray-900 dark:border dark:border-gray-700">
     <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-100 p-6 dark:bg-gray-900 dark:border-gray-700">
-      <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-      <div class="text-sm font-medium leading-6 text-gray-900">Tuple</div>
+      <% if @post.avatar.attached? %>
+        <%= image_tag avatar_url_for(@post), alt: @post.title, class: "h-12 w-12 flex-none rounded-md bg-white object-cover ring-1 ring-gray-900/10" %>
+      <% end %>
+      <div class="text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= @post.title %></div>
       <div class="relative ml-auto">
-        <button type="button" class="-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500" id="options-menu-0-button" aria-expanded="false" aria-haspopup="true">
-          <span class="sr-only">Open options</span>
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-          </svg>
-        </button>
-        <div class="absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none dark:border dark:border-gray-700 dark:bg-gray-900" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
-          <!-- Active: "bg-gray-50", Not Active: "" -->
-          <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-0">View<span class="sr-only">, Tuple</span></a>
-          <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-1">Edit<span class="sr-only">, Tuple</span></a>
+        <div data-controller="dropdown" data-action="click->dropdown#toggle click@window->dropdown#hide">
+          <div id="dropdown-button" class="relative block">
+            <div role="button" tabindex="0" data-dropdown-target="button" class="relative flex focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+              </svg>
+            </div>
+            <div data-dropdown-target="menu"
+                  data-transition-enter="transition ease-out duration-200"
+                  data-transition-enter-from="opacity-0 translate-y-1"
+                  data-transition-enter-to="opacity-100 translate-y-0"
+                  data-transition-leave="transition ease-in duration-150"
+                  data-transition-leave-from="opacity-100 translate-y-0"
+                  data-transition-leave-to="opacity-0 translate-y-1"
+                  class="hidden absolute top-4 right-0 z-10 mt-5 flex w-screen max-w-max">
+              <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-900 dark:border dark:border-gray-700 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none " role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <a href="#" class="block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" role="menuitem" tabindex="-1" id="options-menu-0-item-0">Delete<span class="sr-only">Delete <%= @post.title %></span></a>
+                <% if current_user && current_user == @post.user %>
+                  <%= link_to "Edit", edit_post_path, class: "block px-2 mx-2 py-1 text-sm leading-6 text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md" %><span class="sr-only">Edit <%= @post.title %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

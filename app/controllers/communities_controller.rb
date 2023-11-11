@@ -1,5 +1,6 @@
 class CommunitiesController < ApplicationController
   before_action :set_community, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /communities or /communities.json
   def index
@@ -12,7 +13,7 @@ class CommunitiesController < ApplicationController
 
   # GET /communities/new
   def new
-    @community = Community.new
+    @community = current_user.communities.build
   end
 
   # GET /communities/1/edit
@@ -21,8 +22,7 @@ class CommunitiesController < ApplicationController
 
   # POST /communities or /communities.json
   def create
-    @community = Community.new(community_params)
-    @community.user = current_user
+    @community = current_user.communities.build(community_params)
 
     respond_to do |format|
       if @community.save

@@ -75,3 +75,4 @@ gem 'inline_svg'
 gem 'faker'
 gem 'friendly_id', '~> 5.4.0'
 gem "rolify"
+gem "pundit", "~> 2.3"

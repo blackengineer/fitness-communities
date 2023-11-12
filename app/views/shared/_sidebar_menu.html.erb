@@ -2,6 +2,15 @@
   <ul role="list" class="flex flex-1 flex-col gap-y-7 list-none">
     <li>
       <ul role="list" class="space-y-1 list-none">
+        <% if user_signed_in? %>
+          <li>
+            <div class="my-3">
+              <% if @communities.any? %>
+                <!-- show community list dropdown -->
+              <% end %>
+            </div>
+          </li>
+        <% end %>
         <li class="px-4">
           <!-- Current: "bg-gray-50 text-blue-600", Default: "text-gray-700 hover:text-blue-600 hover:bg-gray-50" -->
           <%= link_to root_path, class: "text-gray-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-normal hover:bg-gray-100 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800" do %>
@@ -92,17 +101,17 @@
         <li class="px-4">
           <!-- Current: "bg-gray-50 text-blue-600", Default: "text-gray-700 hover:text-blue-600 hover:bg-gray-50" -->
           <a href="#" class="text-gray-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-normal hover:bg-gray-100 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800">
-            <span class="truncate">Combine</span>
+            <span class="truncate">3 RM Bench Press</span>
           </a>
         </li>
         <li class="px-4">
           <a href="#" class="text-gray-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-normal hover:bg-gray-100 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800">
-            <span class="truncate">Combine - 3RM Trap Bar</span>
+            <span class="truncate">3RM Trap Bar Deadlift</span>
           </a>
         </li>
         <li class="px-4">
           <a href="#" class="text-gray-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-normal hover:bg-gray-100 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800">
-            <span class="truncate">Combine - 3RM Barbell Back Squat</span>
+            <span class="truncate">3RM Barbell Back Squat</span>
           </a>
         </li>
         <li class="py-12 px-4 flex items-center justify-center">

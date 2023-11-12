@@ -13,15 +13,18 @@ class MusclesController < ApplicationController
   # GET /muscles/new
   def new
     @muscle = Muscle.new
+    authorize @muscle
   end
 
   # GET /muscles/1/edit
   def edit
+    authorize @muscle
   end
 
   # POST /muscles or /muscles.json
   def create
     @muscle = Muscle.new(muscle_params)
+    authorize @muscle
     @muscle.user = current_user
 
     respond_to do |format|
@@ -37,6 +40,7 @@ class MusclesController < ApplicationController
 
   # PATCH/PUT /muscles/1 or /muscles/1.json
   def update
+    authorize @muscle
     respond_to do |format|
       if @muscle.update(muscle_params)
         format.html { redirect_to muscle_url(@muscle), notice: "Muscle was successfully updated." }
@@ -50,6 +54,7 @@ class MusclesController < ApplicationController
 
   # DELETE /muscles/1 or /muscles/1.json
   def destroy
+    authorize @muscle
     @muscle.destroy!
 
     respond_to do |format|

@@ -13,15 +13,18 @@ class ProgramsController < ApplicationController
   # GET /programs/new
   def new
     @program = Program.new
+    authorize @program
   end
 
   # GET /programs/1/edit
   def edit
+    authorize @program
   end
 
   # POST /programs or /programs.json
   def create
     @program = Program.new(program_params)
+    authorize @program
     @program.user = current_user
     
 
@@ -38,6 +41,7 @@ class ProgramsController < ApplicationController
 
   # PATCH/PUT /programs/1 or /programs/1.json
   def update
+    authorize @program
     respond_to do |format|
       if @program.update(program_params)
         format.html { redirect_to program_url(@program), notice: "Program was successfully updated." }
@@ -51,6 +55,7 @@ class ProgramsController < ApplicationController
 
   # DELETE /programs/1 or /programs/1.json
   def destroy
+    authorize @program
     @program.destroy!
 
     respond_to do |format|

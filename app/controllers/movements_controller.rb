@@ -13,15 +13,18 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
+    authorize @movement
   end
 
   # GET /movements/1/edit
   def edit
+    authorize @movement
   end
 
   # POST /movements or /movements.json
   def create
     @movement = Movement.new(movement_params)
+    authorize @movement
     @movement.user = current_user
 
     respond_to do |format|
@@ -37,6 +40,7 @@ class MovementsController < ApplicationController
 
   # PATCH/PUT /movements/1 or /movements/1.json
   def update
+    authorize @movement
     respond_to do |format|
       if @movement.update(movement_params)
         format.html { redirect_to movement_url(@movement), notice: "Movement was successfully updated." }
@@ -50,6 +54,7 @@ class MovementsController < ApplicationController
 
   # DELETE /movements/1 or /movements/1.json
   def destroy
+    authorize @movement
     @movement.destroy!
 
     respond_to do |format|

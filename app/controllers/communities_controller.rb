@@ -18,6 +18,7 @@ class CommunitiesController < ApplicationController
 
   # GET /communities/1/edit
   def edit
+    authorize @community
   end
 
   # POST /communities or /communities.json
@@ -37,6 +38,7 @@ class CommunitiesController < ApplicationController
 
   # PATCH/PUT /communities/1 or /communities/1.json
   def update
+    authorize @community
     respond_to do |format|
       if @community.update(community_params)
         format.html { redirect_to community_url(@community), notice: "Community was successfully updated." }
@@ -51,6 +53,7 @@ class CommunitiesController < ApplicationController
   # DELETE /communities/1 or /communities/1.json
   def destroy
     @community.destroy!
+    authorize @community
 
     respond_to do |format|
       format.html { redirect_to communities_url, notice: "Community was successfully destroyed." }

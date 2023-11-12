@@ -12,15 +12,27 @@
     </div>
   <% end %>
   
-  <!-- Render community posts -->
+  <div>
+    <% if @community.posts.count > 0 %>
+      <% @community.posts.each do | post | %>
+        <div class="mb-10">
+          <%= render "posts/post", post: post %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="bg-white border border-gray-300 rounded-lg p-8">
+        <p>There are no posts yet.</p>
+        <div class="mt-4">
+          <%= link_to "Create a post", new_post_path, class: "rounded-full py-2 px-5 mt-4 bg-blue-500 text-white font-medium" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %> 
 
 <% content_for :right_content do %>
   <div class="overflow-hidden rounded-lg border border-gray-300 dark:bg-gray-900 dark:border dark:border-gray-700">
     <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-100 p-6 dark:bg-gray-900 dark:border-gray-700">
-      <% if @community.avatar.attached? %>
-        <%= image_tag avatar_url_for(@community), alt: @community.name, class: "h-12 w-12 flex-none rounded-md bg-white object-cover ring-1 ring-gray-900/10" %>
-      <% end %>
       <div class="text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= @community.name %></div>
       <div class="relative ml-auto">
         <div data-controller="dropdown" data-action="click->dropdown#toggle click@window->dropdown#hide">
@@ -86,6 +98,16 @@
           </svg>
           <div class="rounded-md py-1 px-2 text-xs font-medium text-gray-500 bg-gray-50 dark:border dark:border-gray-700 dark:bg-gray-900"><%= @community.created_at.to_formatted_s(:long) %></div>
         </dd>
+      </div>
+      <div class="grid grid-cols-2 gap-3 px-4 py-2">
+        <div>
+          <p><%= "Post".pluralize(@community.posts.size) %></p>
+          <p><%= @community.posts.size %></p>
+        </div>
+        <div>
+          <p>Members</p>
+          <!-- Member count -->
+        </div>
       </div>
     </dl>
   </div>

@@ -118,7 +118,7 @@
             <a href="<%= user_path(@post.user) %>">
               <span class="absolute inset-0"></span>
               Posted by <%= @post.user.username %>
-              on <%= @post.created_at.to_formatted_s(:long) %>
+              on <%= @post.created_at.strftime("%B %d %Y") %>
             </a>
           </div>
         </div>

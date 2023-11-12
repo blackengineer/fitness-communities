@@ -13,16 +13,20 @@ class BlogsController < ApplicationController
   # GET /blogs/new
   def new
     @blog = Blog.new
+    authorize @blog
   end
 
   # GET /blogs/1/edit
   def edit
+    authorize @blog
   end
 
   # POST /blogs or /blogs.json
   def create
     @blog = Blog.new(blog_params)
     @blog.user = current_user
+    
+    authorize @blog
 
     respond_to do |format|
       if @blog.save
@@ -37,6 +41,7 @@ class BlogsController < ApplicationController
 
   # PATCH/PUT /blogs/1 or /blogs/1.json
   def update
+    authorize @blog
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to blog_url(@blog), notice: "Blog was successfully updated." }
@@ -50,6 +55,7 @@ class BlogsController < ApplicationController
 
   # DELETE /blogs/1 or /blogs/1.json
   def destroy
+    authorize @blog
     @blog.destroy!
 
     respond_to do |format|

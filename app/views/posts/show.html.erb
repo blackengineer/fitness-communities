@@ -1,4 +1,4 @@
-<%= content_for :title, "Posts ##{@post.id}" %>
+<%= content_for :title, "Posts #{@post.title}" %>
 <%= turbo_stream_from @post %>
 
 <% content_for :left_content do %>

@@ -23,8 +23,8 @@
                     <td class="whitespace-normal py-5 pl-4 pr-3">
                       <div class="flex items-center">
                         <% if muscle.avatar.attached? %>
-                          <div class="h-32 w-32 flex-shrink-0">
-                            <%= image_tag muscle.avatar, alt: muscle.name %>
+                          <div class="flex-shrink-0">
+                            <%= image_tag muscle.avatar, class: "h-32 w-32 rounded-lg", alt: muscle.name %>
                           </div>
                         <% end %>
                         <div class="ml-4">

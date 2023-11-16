@@ -8,7 +8,7 @@
   </h1>
   <% if @muscle.avatar.attached? %>
     <div class="mb-6">
-      <%= image_tag @muscle.avatar, alt: @muscle.name %>
+      <%= image_tag @muscle.avatar, class: "rounded-lg", alt: @muscle.name %>
     </div>
   <% end %>
   <div class="col-span-1 divide-gray-200 rounded-lg border border-gray-300 bg-white dark:bg-gray-900 dark:border-gray-700">
